@@ -1,5 +1,6 @@
 # django-samples
 A simple sample implementation of a Django program I created for myself.
+
 自分用に備忘録として作成したシンプルなDjangoプロジェクト。
 
 # Quick start
