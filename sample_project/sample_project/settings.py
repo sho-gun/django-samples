@@ -10,22 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+# django-environを用いた環境変数の秘匿サンプル
+# django-environをインポート
+import os
+import environ
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# envオブジェクトを作成
+env = environ.Env(
+    DEBUG = (bool, False)
+)
+
+# sample_project/.envを読み込み
+# CAUTION: sample_project/.envは、実際のプロジェクトではGit管理内容に含めない！
 BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_fm3))r6!#)^wxpv2r1*&gzj=wnhis!nb-u26fjlphj$e(a(%4'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# 読み込んだ環境変数を設定
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
