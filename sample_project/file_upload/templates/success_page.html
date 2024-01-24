@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-3">
+  <p>アップロードが完了しました</p>
+  <a href="{% url 'file_upload:file_upload_sample' %}">戻る</a>
+</div>
+{% endblock %}
